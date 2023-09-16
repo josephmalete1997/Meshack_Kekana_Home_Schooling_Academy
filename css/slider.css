@@ -1,0 +1,28 @@
+.slider {
+    width: 100%;
+    height: 300px;
+    background: black;
+    margin-top: -15px;
+}
+
+.left {
+    float: left;
+    margin-top: 135px;
+    margin-left: 20px;
+}
+
+.right {
+    float: right;
+    margin-top: 135px;
+    margin-right: 20px;
+}
+
+.slider .fa-solid {
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.slider .fa-solid:hover {
+    opacity: 0.6;
+}
