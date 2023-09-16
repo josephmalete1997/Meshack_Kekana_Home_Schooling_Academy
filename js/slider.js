@@ -18,6 +18,40 @@ const Explain = [
 
 ]
 
+function speech(x) {
+    const speakButton = document.getElementById('speakButton');
+    const muteButton = document.getElementById('muteButton');
+    const audio = document.getElementById('audio');
+
+    let isMuted = false;
+
+    // Initialize the speech synthesis
+    const synth = window.speechSynthesis;
+
+    speakButton.addEventListener('click', () => {
+        if (synth.speaking) {
+            return; // Do nothing if speech synthesis is already in progress
+        }
+
+        const text = Explain[x];
+        if (text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            synth.speak(utterance);
+        }
+    });
+
+    muteButton.addEventListener('click', () => {
+        isMuted = !isMuted;
+        audio.muted = isMuted;
+
+        if (isMuted) {
+            muteButton.innerText = 'Unmute';
+        } else {
+            muteButton.innerText = 'Mute';
+        }
+    });
+}
+
 for (let j = 0; j < 1; j++) {
     const explaining = document.createElement('div');
     explaining.setAttribute('class', 'describe');
@@ -76,6 +110,7 @@ function displayReasons() {
         ReasonUs[3].style.transform = "translateX(200px)";
         explainingWhy.innerHTML = Explain[3];
         explainingWhy.style.transform = "scale(1)";
+        speech(3);
     } else if (count === 145) {
         explainingWhy.style.transform = "scale(0)";
     } else if (count === 150) {
@@ -87,6 +122,7 @@ function displayReasons() {
         // ReasonUs[3].style.transform = "translateX(200px)";
         explainingWhy.innerHTML = Explain[2];
         explainingWhy.style.transform = "scale(1)";
+        speech(2);
 
     } else if (count === 245) {
         explainingWhy.style.transform = "scale(0)";
@@ -95,7 +131,7 @@ function displayReasons() {
         ReasonUs[1].style.transform = "scale(1)";
         ReasonUs[2].style.transform = "scale(0)";
         ReasonUs[3].style.transform = "scale(0)";
-
+        speech(1);
         ReasonUs[1].style.transform = "translateX(-150px)";
         explainingWhy.innerHTML = Explain[1];
         explainingWhy.style.transform = "scale(1)";
@@ -107,7 +143,7 @@ function displayReasons() {
         ReasonUs[1].style.transform = "scale(0)";
         ReasonUs[2].style.transform = "scale(0)";
         ReasonUs[3].style.transform = "scale(0)";
-
+        speech(0);
         ReasonUs[0].style.transform = "translateX(-350px)";
         explainingWhy.innerHTML = Explain[0];
         explainingWhy.style.transform = "scale(1)";
